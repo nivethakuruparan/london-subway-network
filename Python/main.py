@@ -1,6 +1,6 @@
 from metrics_extractor import *
 from graph import *
-from path_finder import *
+from itinerary import *
 
 
 def main():
@@ -8,16 +8,19 @@ def main():
     lines_list = extract_data('../_dataset/london.lines.csv')
     connections_list = extract_data('../_dataset/london.connections.csv')
 
-    g = Graph(stations_list, connections_list)
+    g = Graph(stations_list, lines_list, connections_list)
     print("\nNumber of Stations:", g.num_stations)
     print("Number of Connections:", g.num_connections)
+    print("Number of Lines:", g.num_lines)
     print("Average Degree of Nodes:", g.avg_degree())
 
     print("\nPrinting Connections for each Station")
     for key in g.connections.keys():
         print(key + ":", g.connections[key].neighbours)
 
-    dijkstra_shortest_path(g.connections, '300', '303')
+    Itinerary(g.connections, '11', '273') 
+    Itinerary(g.connections, '11', '193')
+    Itinerary(g.connections, '11', '400')
 
 
 main()

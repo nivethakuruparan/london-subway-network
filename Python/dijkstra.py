@@ -1,10 +1,11 @@
 import heapq
 
 
-def dijkstra(graph, starting_station):
+def dijkstra(graph, starting_station: str):
     distances = {station: float('inf') for station in graph}
     distances[starting_station] = 0
     came_from = {station: None for station in graph}
+    travel_details = {station: None for station in graph}
     queue = [(0, starting_station)]
 
     while queue:
@@ -20,29 +21,24 @@ def dijkstra(graph, starting_station):
             if distance_temp < distances[next_station]:
                 distances[next_station] = distance_temp
                 came_from[next_station] = current_station
+                travel_details[next_station] = (neighbour[1], neighbour[2])
                 heapq.heappush(queue, (distance_temp, next_station))
 
-    return distances, came_from
+    return distances, came_from, travel_details
 
 
-def dijkstra_shortest_path(graph, starting_station, ending_station):
-    print("\nComputing Graph Using Dijkstra's Algorithm")
-    distances, came_from = dijkstra(graph, starting_station)
+def dijkstra_shortest_path(graph, starting_station: str, ending_station: str):
+    distances, came_from, travel_details = dijkstra(graph, starting_station)
     if ending_station in distances and distances[ending_station] != float('inf'):
-        print("The least amount of time to go from Station", starting_station, "to Station", ending_station, "is", str(distances[ending_station]))
-
         path = [ending_station]
+        details = []
         index = 0
         while path[-1] != starting_station:
             key = path[index]
             path.append(came_from[key])
+            details.append(travel_details[key])
             index += 1
 
-        print('Path:', end=' ')
-        for p in reversed(path):
-            if p != path[0]:
-                print('Station', p, '->', end=' ')
-            else:
-                print('Station', p)
+        return str(distances[ending_station]), list(reversed(path)), list(reversed(details))
     else:
-        print("There is no path connecting from Station", starting_station, "to Station", ending_station)
+        return None
