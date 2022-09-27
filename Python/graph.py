@@ -1,5 +1,5 @@
-from .station import *
-from .line import *
+from Python.station import *
+from Python.line import *
 
 
 class Graph:
