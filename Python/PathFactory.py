@@ -25,7 +25,7 @@ class PathFactory():
     @staticmethod
     def build(alg_name, g, start, end):
         if alg_name == 'Dijkstra':
-            res = DijkstraPathFinder(g, start, end)
+            res = DijkstraPathFinder(g,start,end)
             result = res.get_path(g,start,end)
             return result 
         elif alg_name == 'AStar':

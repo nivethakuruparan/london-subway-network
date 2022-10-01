@@ -27,8 +27,8 @@ class DijkstraPathFinder(PathFinder):
 
                 distance_temp = current_distance + weight
                 noc += 1
+                noda += 1
                 if distance_temp < distances[next_station]:
-                    noda += 1
                     distances[next_station] = distance_temp
                     came_from[next_station] = current_station
                     travel_details[next_station] = (neighbour[1], neighbour[2])
@@ -47,10 +47,10 @@ class DijkstraPathFinder(PathFinder):
             details = []
             index = 0
             while path[-1] != starting_station:
-                noda += 3
                 key = path[index]
                 path.append(came_from[key])
                 details.append(travel_details[key])
+                noda += 3
                 index += 1
 
             return str(distances[ending_station]), list(reversed(path)), list(reversed(details)), noc, noda
