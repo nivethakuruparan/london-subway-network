@@ -1,7 +1,8 @@
 # from Python.BFSPathFinder import *
 from Python.DijkstraPathFinder import *
 from Python.AStarPathFinder import *
-
+# from DijkstraPathFinder import *
+# from AStarPathFinder import *
 class PathFactory():
     @staticmethod
     def display_path(alg_name, path_res):
