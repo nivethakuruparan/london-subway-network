@@ -2,5 +2,5 @@ from abc import ABC, abstractmethod
 
 class PathFinder(ABC):
     @abstractmethod 
-    def get_path(self, graph, starting_station:str, ending_station:str):
+    def get_path(self, path_query):
         pass

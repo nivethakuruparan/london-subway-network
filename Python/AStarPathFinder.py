@@ -4,7 +4,7 @@ import heapq
 import math 
 
 class AStarPathFinder(PathFinder):
-    def __init__(self, graph, start, end):
+    def __init__(self, pq):
         return 
 
     def heuristic(self,graph, current_station, end_station):
@@ -14,7 +14,12 @@ class AStarPathFinder(PathFinder):
         return math.dist(a, b)
 
 
-    def get_path(self,graph, starting_station: str, ending_station: str):
+    def get_path(self, path_query):
+        graph = path_query[0]
+        starting_station = path_query[1]
+        ending_station = path_query[2]
+
+    # def get_path(self,graph, starting_station: str, ending_station: str):
         noc = 0
         noda = 0
         open_list = []

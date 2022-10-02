@@ -2,7 +2,7 @@ import heapq
 from Python.PathFinder import PathFinder
 # from PathFinder import PathFinder
 class DijkstraPathFinder(PathFinder):
-    def __init__(self, graph, start, end):
+    def __init__(self, pq):
         return 
 
     def dijkstra(self, graph, starting_station: str):
@@ -37,8 +37,12 @@ class DijkstraPathFinder(PathFinder):
 
         return distances, came_from, travel_details, noc, noda
 
+    def get_path(self, path_query):
+        graph = path_query[0]
+        starting_station = path_query[1]
+        ending_station = path_query[2]
 
-    def get_path(self, graph, starting_station: str, ending_station: str):
+    # def get_path(self, graph, starting_station: str, ending_station: str):
         
         distances, came_from, travel_details, noc, noda = self.dijkstra(graph, starting_station)
         noda += 1

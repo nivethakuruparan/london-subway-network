@@ -4,18 +4,16 @@ import numpy as np
 # from graph import Graph 
 # from PathFactory import PathFactory as pf 
 # import metrics_extractor as me
+import Python.bm_data as btd
 from Python.graph import Graph 
 from Python.PathFactory import PathFactory as pf 
 import Python.metrics_extractor as me
-import Python.bm_kpi_data as bkd
 
-def generate_data():
-    return bkd.generate_kpi_data()
+def get_data():
+    return btd.generate_kpi_data()
 
 def generate_alg_list():
-    alg1 = 'Dijkstra'
-    alg2 = 'AStar'
-    return [alg1,alg2]
+    return ['Dijkstra','AStar']
 
 def do_bench(alg:str, gr, bench_data):
     data_ind = []
@@ -26,25 +24,14 @@ def do_bench(alg:str, gr, bench_data):
         noc = 0
         noda = 0 
         for j in pair_list:
-            result = pf.build(alg, gr, j[0], j[1])
+            path_query = [gr, j[0], j[1]]
+            result = pf.build(alg, path_query)()
             noc += result[3]
             noda += result[4]
         data_ind.append(i)
         noc_results.append(noc)
         noda_results.append(noda)
     return data_ind, noc_results, noda_results  
-
-
-# def plot_results(xlist, yDlist, yAlist, yname):
-#     x_axis = np.arange(len(xlist))
-#     pplot.bar(x_axis - 0.2, yDlist, 0.4, label = "Dijkstra")
-#     pplot.bar(x_axis + 0.2, yAlist, 0.4, label = "AStar" )
-#     pplot.xticks(x_axis, xlist)
-#     pplot.xlabel('Algorithms')
-#     pplot.ylabel(yname)
-#     pplot.title('For Dijkstra and A Star Algorithm')
-#     pplot.legend()
-#     pplot.show()
 
 def plot_results(x_list, noc_list, noda_list, alg_name):
     x_axis = np.arange(len(x_list))
@@ -68,15 +55,15 @@ def print_results(x_list, d_list, a_list, title):
 
 def main():
     alg_list = generate_alg_list()
-    data_list = generate_data()
+    data_list = get_data()
     stations_list = me.extract_data('_dataset/london.stations.csv')
     lines_list = me.extract_data('_dataset/london.lines.csv')
     connections_list = me.extract_data('_dataset/london.connections.csv')
     
-    g = Graph(stations_list, lines_list, connections_list)
-
-    ind, noc0, noda0 = do_bench(alg_list[0],g.connections,data_list)
-    ind, noc1, noda1 = do_bench(alg_list[1],g.connections,data_list)
+    gr = Graph(stations_list, lines_list, connections_list).connections
+    
+    ind, noc0, noda0 = do_bench(alg_list[0],gr,data_list)
+    ind, noc1, noda1 = do_bench(alg_list[1],gr,data_list)
 
     print("Displaying KPIs for Path Finding Algorithms")
     print("Input Size refers to number of station connections requested")
@@ -86,6 +73,3 @@ def main():
     plot_results(ind, noc0, noda0, alg_list[0])
     plot_results(ind, noc1, noda1, alg_list[1])
 
-
-if __name__ == "__main__":
-    main()
