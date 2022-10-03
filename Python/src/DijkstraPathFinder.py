@@ -1,9 +1,15 @@
 import heapq
-from Python.PathFinder import PathFinder
+from Python.src.PathFinder import PathFinder
 # from PathFinder import PathFinder
 class DijkstraPathFinder(PathFinder):
     def __init__(self, pq):
         return 
+
+    def check_exists(self, graph, st):
+        for i in graph:
+            if (st == i):
+                return True
+        return False
 
     def dijkstra(self, graph, starting_station: str):
         noc = 0
@@ -41,7 +47,9 @@ class DijkstraPathFinder(PathFinder):
         graph = path_query[0]
         starting_station = path_query[1]
         ending_station = path_query[2]
-
+        
+        if not(self.check_exists(graph, starting_station) and self.check_exists(graph, ending_station)):
+            return None 
     # def get_path(self, graph, starting_station: str, ending_station: str):
         
         distances, came_from, travel_details, noc, noda = self.dijkstra(graph, starting_station)

@@ -4,10 +4,10 @@ import numpy as np
 # from graph import Graph 
 # from PathFactory import PathFactory as pf 
 # import metrics_extractor as me
-import Python.bm_data as btd
-from Python.graph import Graph 
-from Python.PathFactory import PathFactory as pf 
-import Python.metrics_extractor as me
+import Python.src.bm_data as btd
+from Python.src.graph import Graph 
+from Python.src.PathFactory import PathFactory as pf 
+import Python.src.metrics_extractor as me
 
 def get_data():
     return btd.generate_kpi_data()

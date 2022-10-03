@@ -1,7 +1,7 @@
 # from Python.BFSPathFinder import *
 from operator import methodcaller
-from Python.DijkstraPathFinder import *
-from Python.AStarPathFinder import *
+from Python.src.DijkstraPathFinder import *
+from Python.src.AStarPathFinder import *
 # from DijkstraPathFinder import *
 # from AStarPathFinder import *
 class PathFactory():

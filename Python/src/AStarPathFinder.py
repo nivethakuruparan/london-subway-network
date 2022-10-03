@@ -1,4 +1,4 @@
-from Python.PathFinder import PathFinder 
+from Python.src.PathFinder import PathFinder 
 # from PathFinder import PathFinder
 import heapq
 import math 
@@ -13,11 +13,19 @@ class AStarPathFinder(PathFinder):
 
         return math.dist(a, b)
 
+    def check_exists(self, graph, st):
+        for i in graph:
+            if (st == i):
+                return True
+        return False 
 
     def get_path(self, path_query):
         graph = path_query[0]
         starting_station = path_query[1]
         ending_station = path_query[2]
+
+        if not(self.check_exists(graph, starting_station) and self.check_exists(graph, ending_station)):
+            return None 
 
     # def get_path(self,graph, starting_station: str, ending_station: str):
         noc = 0
@@ -54,7 +62,6 @@ class AStarPathFinder(PathFinder):
                         noc += 1
                         if neighbour[0] == parents[current]:
                             noda += 3
-                            total_time += int(neighbour[2])
                             travel_details.append((neighbour[1], neighbour[2]))
                             break
 
@@ -67,10 +74,13 @@ class AStarPathFinder(PathFinder):
                     noda += 3
                     noc += 1
                     if neighbour[0] == path[-2]:
-                        total_time += int(neighbour[2])
                         travel_details.append((neighbour[1], neighbour[2]))
                         noda += 3
                         break
+
+                for i in range(1, len(path)):
+                    total_time += int(travel_details[i-1][1])
+
 
                 return str(total_time), list(reversed(path)), list(reversed(travel_details)), noc, noda
 

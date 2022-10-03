@@ -1,5 +1,5 @@
-from Python.PathFactory import PathFactory as pf
-from Python.graph import Graph
+from Python.src.PathFactory import PathFactory as pf
+from Python.src.graph import Graph
 # from PathFactory import PathFactory as pf
 # from graph import Graph
 
@@ -27,7 +27,7 @@ class Itinerary:
     def least_time(self):
         algo_name = "Dijkstra"
         path_query = [self.graph, self.starting_station, self.ending_station]
-        path_res = pf.build(algo_name, path_query)()
+        path_res = pf.build(algo_name,path_query)()
         if not path_res:
             return None 
         pf.display_path(algo_name, path_res)
@@ -36,7 +36,7 @@ class Itinerary:
     def least_stations(self, least_time):
         algo_name = "AStar"
         path_query = [self.graph, self.starting_station, self.ending_station]
-        path_res = pf.build(algo_name, path_query)()
+        path_res = pf.build(algo_name,path_query)()
 
         if path_res[1] == least_time or len(path_res[1]) == len(least_time):
             return None 

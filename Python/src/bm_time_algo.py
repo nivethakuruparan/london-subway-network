@@ -3,10 +3,10 @@ import pyperf
 # import metrics_extractor as me
 # import bm_data as btd
 # from graph import Graph
-import Python.bm_data as btd
-from Python.graph import Graph 
-from Python.PathFactory import PathFactory as pf 
-import Python.metrics_extractor as me
+import Python.src.bm_data as btd
+from Python.src.graph import Graph 
+from Python.src.PathFactory import PathFactory as pf 
+import Python.src.metrics_extractor as me
 
 def generate_alg_list():
     return ["Dijkstra", "AStar"]
