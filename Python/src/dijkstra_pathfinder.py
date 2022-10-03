@@ -7,7 +7,18 @@ class DijkstraPathFinder(PathFinder):
         self.num_comparisons = 0
         self.num_data_accesses = 0
 
+
+    def check_exists(self, graph, st):
+        for i in graph:
+            if (st == i):
+                return True
+        return False 
+        
     def get_path(self, graph: dict, starting_station: str, ending_station: str):
+        if not(self.check_exists(graph, starting_station) and self.check_exists(graph, ending_station)):
+            return None 
+
+
         distances = {station: float('inf') for station in graph}
         distances[starting_station] = 0
 

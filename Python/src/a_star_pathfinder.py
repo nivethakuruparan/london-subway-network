@@ -14,6 +14,12 @@ class AStarPathFinder(PathFinder):
 
         return math.dist(a, b)
 
+    def check_exists(self, graph, st):
+        for i in graph:
+            if (st == i):
+                return True
+        return False 
+
     def get_path(self, graph: dict, starting_station: str, ending_station: str):
         open_list = []
         heapq.heapify(open_list)
@@ -22,6 +28,10 @@ class AStarPathFinder(PathFinder):
 
         current_distance = {starting_station: 0}
         parents = {starting_station: starting_station}
+
+        if not(self.check_exists(graph, starting_station) and self.check_exists(graph, ending_station)):
+            return None 
+
 
         self.num_comparisons += 1
         while len(open_list) > 0:
