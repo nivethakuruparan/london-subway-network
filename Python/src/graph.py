@@ -1,5 +1,5 @@
-from Python.GraphBuilder.station import *
-from Python.GraphBuilder.line import *
+from Python.src.station import *
+from Python.src.line import *
 
 
 class Graph:

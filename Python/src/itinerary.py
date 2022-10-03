@@ -1,4 +1,4 @@
-from Python.PathFinder.pathfinder_factory import *
+from Python.src.pathfinder_factory import *
 
 
 class Itinerary(object):

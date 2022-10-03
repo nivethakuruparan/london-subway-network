@@ -1,6 +1,6 @@
-from Python.PathFinder.dijkstra_pathfinder import *
-from Python.PathFinder.a_star_pathfinder import *
-from Python.PathFinder.bfs_pathfinder import *
+from Python.src.dijkstra_pathfinder import *
+from Python.src.a_star_pathfinder import *
+from Python.src.bfs_pathfinder import *
 
 
 class PathFinderFactory(object):

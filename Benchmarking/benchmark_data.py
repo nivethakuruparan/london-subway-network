@@ -1,4 +1,4 @@
-import Python.metrics_extractor as metric_extractor
+import Python.src.metrics_extractor as metric_extractor
 import random
 
 

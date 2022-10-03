@@ -1,8 +1,8 @@
 import pyperf
 import Benchmarking.benchmark_data as benchmark_data
-from Python.GraphBuilder.graph import Graph
-from Python.PathFinder.pathfinder_factory import PathFinderFactory as pathfinder_factory
-import Python.metrics_extractor as metrics_extractor
+from Python.src.graph import Graph
+from Python.src.pathfinder_factory import PathFinderFactory as pathfinder_factory
+import Python.src.metrics_extractor as metrics_extractor
 
 
 def get_data(graph):

@@ -1,4 +1,4 @@
-from Python.PathFinder.pathfinder import *
+from Python.src.pathfinder import *
 import heapq
 
 
